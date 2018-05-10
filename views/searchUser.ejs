@@ -11,16 +11,16 @@
       <div class="uk-child-width-expand" uk-grid>
         <div></div>
         <div class="uk-width-2-3 uk-text-center" style="margin-top: 25px;">
-          <form class="uk-search uk-search-default">
-            <a href="#" uk-search-icon></a>
-            <input class="uk-search-input" type="search" placeholder="Search User">
+          <form class="uk-search uk-search-default" action="/searchUser">
+            <span href="" uk-search-icon></span>
+            <input class="uk-search-input" type="search" placeholder="Search User" name="search" value="<%= search %>">
           </form>
         </div>
         <div></div>
       </div>
 
       <div class="uk-child-width" uk-grid>        
-        <div class="uk-width-1-1 uk-text-center">
+        <div class="uk-width-1-1">
           <table class="uk-table uk-table-divider">
             <caption>List of System Users</caption>
             <thead>
@@ -31,21 +31,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>3242342</td>
-                <td>Jhunex</td>
-                <td>Jun</td>
-              </tr>
-              <tr>
-                <td>6756756</td>
-                <td>Mavic</td>
-                <td>Canaleta</td>
-              </tr>
-              <tr>
-                <td>4564646</td>
-                <td>Jose</td>
-                <td>Rizal</td>
-              </tr>
+              <% users.forEach(function(user) { %>
+                <tr>
+                  <td><%= user._id %></td>
+                  <td><%= user.name.fName %></td>
+                  <td><%= user.name.lName %></td>
+                </tr>
+              <% }); %>
             </tbody>
           </table>
         </div>
