@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ./partials/head %>
+  </head>
+  <body>
+    <%- include('./partials/top-bar', {protocolAndHostname: protocolAndHostname}); %>
+
+    <div class="uk-container">
+
+      <div class="uk-child-width-expand" uk-grid>
+        <div></div>
+        <div class="uk-width-2-3 uk-text-center" style="margin-top: 25px;">
+          <form class="uk-search uk-search-default">
+            <a href="#" uk-search-icon></a>
+            <input class="uk-search-input" type="search" placeholder="Search User">
+          </form>
+        </div>
+        <div></div>
+      </div>
+
+      <div class="uk-child-width" uk-grid>        
+        <div class="uk-width-1-1 uk-text-center">
+          <table class="uk-table uk-table-divider">
+            <caption>List of System Users</caption>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3242342</td>
+                <td>Jhunex</td>
+                <td>Jun</td>
+              </tr>
+              <tr>
+                <td>6756756</td>
+                <td>Mavic</td>
+                <td>Canaleta</td>
+              </tr>
+              <tr>
+                <td>4564646</td>
+                <td>Jose</td>
+                <td>Rizal</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <% include ./partials/foot %>
+  </body>
+</html>
