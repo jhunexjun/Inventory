@@ -3,31 +3,37 @@ var router = express.Router();
 var MongoClient = require('mongodb').MongoClient
 
 router.get('/', (req, res, next) => {
-	MongoClient.connect('mongodb://localhost:27017', function (err, client) {
-		if (err) throw err
+	const protocolAndHostname = req.protocol + '://' + req.hostname + ':' + (process.env.PORT || '3000');
 
-		var db = client.db('inventory');
-
-		var pattern = '';
-
-		if (typeof(req.query.search) != 'undefined') {
-			pattern = req.query.search;
-		}
-
-		db.collection('users').find({'name.fName': {$regex: pattern, $options: 'i'}}).toArray(function (err, result) {
+	if (typeof(req.query.search) != 'undefined') {
+		MongoClient.connect('mongodb://localhost:27017', function (err, client) {
 			if (err) throw err
 
-			if (typeof(req.query.search) == 'undefined') {
-				result = [];
-			}
-			
-			res.render('searchUser', {
-				protocolAndHostname: req.protocol + '://' + req.hostname + ':' + (process.env.PORT || '3000'),
-				users: result,
-				search: req.query.search,
+			var db = client.db('inventory');
+			var pattern = req.query.search;
+
+			db.collection('users').find({$or:
+				[
+					{'name.fName': {$regex: pattern, $options: 'i'}},
+					{'name.lName': {$regex: pattern, $options: 'i'}}
+				]
+			}).toArray(function (err, result) {
+				if (err) throw err
+				
+				res.render('searchUser', {
+					protocolAndHostname: protocolAndHostname,
+					users: result,
+					search: req.query.search,
+				});
 			});
 		});
-	});
+	} else {
+		res.render('searchUser', {
+			protocolAndHostname: protocolAndHostname,
+			users: [],
+			search: req.query.search,
+		});
+	}
 });
 
 module.exports = router;
