@@ -1,7 +1,7 @@
 # Inventory
 
 #### Installation
-1. Install v8.11.1
+1. Install v8.11.2
 2. Install MongoDB
 3. run "$ npm install"
 4. Install forever as global.

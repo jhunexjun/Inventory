@@ -4,7 +4,7 @@
     <% include ./partials/head %>
   </head>
   <body>
-    <%- include('./partials/top-bar', {protocolAndHostname: protocolAndHostname}); %>
+    <% include ./partials/top-bar %>
 
     <div class="uk-container">
 
@@ -30,7 +30,7 @@
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Email</th>
-                  <th>Action</th>
+                  <th colspan="2">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -40,6 +40,7 @@
                     <td><%= user.name.fName %></td>
                     <td><%= user.name.lName %></td>
                     <td><%= user.email %></td>
+                    <td><a class="uk-link-text" href="/editUser?userId=<%= user._id%>">Edit</a></td>
                     <td><a class="uk-link-text" href="#">Delete</a></td>
                   </tr>
                 <% }); %>
