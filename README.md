@@ -1,7 +1,7 @@
 # Inventory
 
 #### Installation
-1. Install v8.11.2
+1. Install v8.11.1 v8.11.2
 2. Install MongoDB
 3. run "$ npm install"
 4. Install forever as global.
@@ -21,6 +21,8 @@ Then load http://localhost:3000/ in your browser to access the app.
 
 ##### Common Issues
 1. Port is already in use. -- Check the forever installed. To stop all use "$ forever stopall".
-2. eval "$(ssh-agent -s)"
+2. sudo su
+	2.1. eval "$(ssh-agent -s)"
 	Agent pid 59566
-3. # ssh-add ssh-add /home/ubuntu/.ssh/id_rsa
+	2.2. ssh-add /home/ubuntu/.ssh/id_rsa
+	2.3. git clone <ssh> .

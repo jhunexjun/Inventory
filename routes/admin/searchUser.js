@@ -2,7 +2,6 @@
 
 var express = require('express');
 var router = express.Router();
-var MongoClient = require('mongodb').MongoClient;
 
 router.get('/', async (req, res, next) => {
 	if (typeof(req.query.search) != 'undefined') {
@@ -17,13 +16,13 @@ router.get('/', async (req, res, next) => {
 		}).toArray(function (err, result) {
 			if (err) throw err;
 			
-			res.render('searchUser', {
+			res.render('admin/searchUser', {
 				users: result,
 				search: req.query.search,
 			});
 		});
 	} else {
-		res.render('searchUser', {
+		res.render('admin/searchUser', {
 			users: [],
 			search: req.query.search,
 		});

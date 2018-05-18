@@ -5,10 +5,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var MongoClient = require('mongodb').MongoClient;
 
+/* admin router here */
+var adminIndexRouter = require('./routes/admin/adminIndex');
+var usersRouter = require('./routes/admin/users');
+var searchUserRouter = require('./routes/admin/searchUser');
+var editUser = require('./routes/admin/editUser');
+
+/* public router here */
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var searchUserRouter = require('./routes/searchUser');
-var editUser = require('./routes/editUser');
+var loginRouter = require('./routes/login');
 
 var app = express();
 var config = require('./config.json')[app.get('env')];
@@ -24,10 +29,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/* admin pages here */
+app.use('/admin', adminIndexRouter);
+app.use('/users', usersRouter); // sample
+app.use('/admin/searchUser', searchUserRouter);
+app.use('/admin/editUser', editUser);
+
+/* public page here... */
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/searchUser', searchUserRouter);
-app.use('/editUser', editUser);
+app.use('/login', loginRouter);
 
 // console.log(process);
 //  console.log(config.db_host);
