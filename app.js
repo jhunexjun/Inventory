@@ -4,20 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var MongoClient = require('mongodb').MongoClient;
+var namespace = require('express-namespace');
 
-/* admin router here */
-var adminIndexRouter = require('./routes/admin/adminIndex');
-var usersRouter = require('./routes/admin/users');
-var searchUserRouter = require('./routes/admin/searchUser');
-var editUser = require('./routes/admin/editUser');
-
-/* public router here */
-var indexRouter = require('./routes/index');
-var loginRouter = require('./routes/login');
 
 var app = express();
+require('./routes')(app);
 var config = require('./config.json')[app.get('env')];
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,20 +20,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-/* admin pages here */
-app.use('/admin', adminIndexRouter);
-app.use('/users', usersRouter); // sample
-app.use('/admin/searchUser', searchUserRouter);
-app.use('/admin/editUser', editUser);
-
-/* public page here... */
-app.use('/', indexRouter);
-app.use('/login', loginRouter);
-
-// console.log(process);
-//  console.log(config.db_host);
-// console.log(app);
 
 MongoClient.connect(`mongodb://${config.db_host}:27017`, (err, client) => {
 	if (err) throw err;

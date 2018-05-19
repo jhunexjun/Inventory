@@ -8,7 +8,7 @@
 
     <div class="uk-container">
       <div class="uk-flex uk-flex-center uk-margin-top">
-        <form method="get" action="/admin/searchUser">
+        <form method="get" action="/admin/users/search">
           <span uk-search-icon></span>
           <input class="uk-input uk-form-small uk-form-width-medium" type="text" name="search" value="<%= search %>" />
           <button class="uk-button uk-button-primary uk-button-small">Search</button>
@@ -36,7 +36,7 @@
                 <td><%= user.name.fName %></td>
                 <td><%= user.name.lName %></td>
                 <td><%= user.email %></td>
-                <td><a class="uk-link-text" href="/admin/editUser?userId=<%= user._id%>">Edit</a></td>
+                <td><a class="uk-link-text" href="/admin/users/edit/<%= user._id%>">Edit</a></td>
                 <td><a class="uk-link-text" href="#">Delete</a></td>
               </tr>
             <% }); %>

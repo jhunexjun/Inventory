@@ -6,7 +6,7 @@ router.post('/', function(req, res, next) {
 	res.render('admin/adminIndex');
 });
 
-/* GET home page. */
+/* POST home page. */
 router.get('/', function(req, res, next) {
 	res.render('admin/adminIndex');
 });
