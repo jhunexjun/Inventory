@@ -4,25 +4,30 @@
 1. Install v8.11.1/2
 2. Install MongoDB
 3. run "$ npm install"
-4. Install forever as global.
+4. Install forever as global only for prod. nodemon is used dev.
 
-##### To run
-On MacOS or Linux, run the app with this command:
-> $ DEBUG=myapp:* npm start
+##### To run on dev env
+On MacOS or Linux:
+`$ DEBUG=inventory:* npm start`
 
-On Windows, use this command:
-> set DEBUG=myapp:* & npm start
+On Windows:
+`set DEBUG=inventory:* & npm start`
 
 Then load http://localhost:3000/ in your browser to access the app.
 
-##### Notes
-* I use forever to run the app. For more info, https://expressjs.com/en/advanced/pm.html#forever
-  Ran the app with $ forever start bin/www
+##### To run in prod env
+> $ forever start bin/www
+
+For more info, https://expressjs.com/en/advanced/pm.html#forever
+  
 
 ##### Common Issues
-1. Port is already in use. -- Check the forever installed. To stop all use "$ forever stopall".
+1. Port is already in use. -- Stop all forever running with
+`$ forever stopall`. root user is different from other user.
 2. sudo su
-	2.1. eval "$(ssh-agent -s)"
+	```
+	$ eval "$(ssh-agent -s)"
 	Agent pid 59566
-	2.2. ssh-add /home/ubuntu/.ssh/id_rsa
-	2.3. git clone <ssh> .
+	ssh-add /home/ubuntu/.ssh/id_rsa
+	git clone <ssh> .
+	```

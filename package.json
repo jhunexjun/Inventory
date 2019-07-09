@@ -13,12 +13,12 @@
     "express": "~4.16.0",
     "express-namespace": "^0.1.1",
     "http-errors": "~1.6.2",
-    "mongodb": "^3.0.7",
-    "morgan": "~1.9.0"
+    "mongodb": "^3.0.7"
   },
   "author": "jhunexjun",
   "license": "ISC",
   "devDependencies": {
+    "morgan": "^1.9.0",
     "nodemon": "^1.17.3"
   }
 }

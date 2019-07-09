@@ -1,39 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <% include ./partials/head %>
-  </head>
+  <% include ./partials/head %>
   <body>
-  	<div class="uk-container">
-    	<div class="uk-flex uk-flex-center uk-margin-xlarge-top">
-    		<a href="/">Go to home page</a>
+  	<div class="container">
+      <div class="row">
+        <div class="col-xs-12 mx-auto" style="margin: 20px 0;">
+          <a href="/">Go to home page</a>
+        </div>
+      </div>
+    	<div class="row">
+        <div class="col-xs-12 mx-auto">
+          <form method="post" action="/login">
+              <div class="form-group">
+                  <label for="emailAddress">Email address</label>
+                  <input type="email" class="form-control" id="emailAddress" aria-describedby="emailHelp" placeholder="Enter email">
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="staySignedIn">
+                <label class="form-check-label" for="staySignedIn">Stay signed in</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
     	</div>
-		</div>
+    </div>
 
-		<div class="uk-container uk-margin">
-		    <div class="uk-flex uk-flex-center">
-		    	<form class="uk-form-stacked" method="post" action="/admin">
-		    		<div>
-		    			<label class="uk-form-label">Username</label>
-		    			<div class="uk-form-controls">
-		    				<input class="uk-input uk-form-small uk-form-width-medium" id="username" type="text" placeholder="Your username">
-		    			</div>
-		    		</div>
-		    		<div>
-		    			<label class="uk-form-label">Password</label>
-		    			<div class="uk-form-controls">
-		    				<input class="uk-input uk-form-small uk-form-width-medium" id="password" type="password" placeholder="Your password">
-		    			</div>
-		    		</div>
-		    		<div>
-		    			<div class="uk-form-controls">
-		    				<button class="uk-button uk-button-primary uk-button-small uk-width-1-1" style="margin-top: 8px;">Login</button>
-		    			</div>
-		    		</div>
-		    	</form>
-		    </div>
-		</div>
-		
     <% include ./partials/foot %>
   </body>
 </html>
