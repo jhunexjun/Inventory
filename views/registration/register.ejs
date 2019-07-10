@@ -7,47 +7,48 @@
       </div>
       <div class="col-sm-6">
           <h4><a href="/"><< Back</a></h4>
+          <%= console.log(postData) %>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <form method="post" action="/register">
+        <form method="POST" action="/register">
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="firstName" class="col-form-label col-form-label-sm">First name</label>
-              <input type="text" class="form-control form-control-sm" id="firstName">
+              <input type="text" class="form-control form-control-sm" id="firstName" name="firstName" autofocus="autofocus">
             </div>
             <div class="form-group col-md-6">
               <label for="lastName" class="col-form-label col-form-label-sm">Last name</label>
-              <input type="text" class="form-control form-control-sm" id="lastName">
+              <input type="text" class="form-control form-control-sm" id="lastName" name="lastName">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="gender" class="col-form-label col-form-label-sm">Gender</label>
-              <select id="gender" class="form-control form-control-sm">
+              <select id="gender" class="form-control form-control-sm" name="gender">
                 <option selected>--Select--</option>
-                <option>Male</option>
-                <option>Female</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
               </select>
             </div>
           </div>
 
           <div class="form-group">
             <label for="address" class="col-form-label col-form-label-sm">Address</label>
-            <input type="text" class="form-control form-control-sm" id="address">
+            <input type="text" class="form-control form-control-sm" id="address" name="address">
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="city" class="col-form-label col-form-label-sm">City/municipality</label>
-              <input type="text" class="form-control form-control-sm" id="city">
+              <input type="text" class="form-control form-control-sm" id="city" name="city">
             </div>
 
             <div class="form-group col-md-4">
-              <label for="state" class="col-form-label col-form-label-sm">Province</label>
-              <select id="state" class="form-control form-control-sm">
+              <label for="province" class="col-form-label col-form-label-sm">Province</label>
+              <select id="province" class="form-control form-control-sm" name="province">
                   <option value="-1" selected>Choose...</option>
                 <% provincesName.forEach(function(provinceName) { %>
                   <option value="<%=provinceName._id %>"><%=provinceName.province %></option>
@@ -57,22 +58,22 @@
 
             <div class="form-group col-md-2">
               <label for="zipCode" class="col-form-label col-form-label-sm">Zip code</label>
-              <input type="text" class="form-control form-control-sm" id="zipCode">
+              <input type="text" class="form-control form-control-sm" id="zipCode" name="zipCode">
             </div>
           </div>
           <hr>
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="Email" class="col-form-label col-form-label-sm">Email</label>
-              <input type="email" class="form-control form-control-sm" id="Email">
+              <input type="email" class="form-control form-control-sm" id="Email" name="email">
             </div>
             <div class="form-group col-md-4">
               <label for="password" class="col-form-label col-form-label-sm">Password</label>
-              <input type="password" class="form-control form-control-sm" id="password">
+              <input type="password" class="form-control form-control-sm" id="password" name="password">
             </div>
             <div class="form-group col-md-4">
               <label for="confirmPassword" class="col-form-label col-form-label-sm">Confirm</label>
-              <input type="password" class="form-control form-control-sm" id="confirmPassword">
+              <input type="password" class="form-control form-control-sm" id="confirmPassword" name="confirmPassword">
             </div>
 
           </div>

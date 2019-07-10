@@ -8,7 +8,7 @@ var namespace = require('express-namespace');
 
 
 var app = express();
-require('./routes')(app);
+
 var config = require('./config.json')[app.get('env')];
 
 // view engine setup
@@ -20,6 +20,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+require('./routes')(app);
 
 MongoClient.connect(`mongodb://${config.db_host}:27017`, (err, client) => {
 	if (err) throw err;
@@ -43,5 +45,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;
