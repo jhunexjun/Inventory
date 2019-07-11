@@ -16,37 +16,56 @@ router.get('/', async (req, res, next) => {
 
 let mandatoryPostData = ['firstName', 'lastName', 'gender', 'address', 'city', 'province', 'zipCode', 'email', 'password', 'confirmPassword'];
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
     let objectKeys = Object.keys(req.body);
 
     if (check_fields(objectKeys, mandatoryPostData)) {
+        console.log('With status.');
+
         res.status(302).render('./registration/response', {
-            postData: {}
+            message: 'Successful!'
         });
     } else {
-        res.render('./registration/register', {
-            postData: {}
+        // console.log('No status.');
+
+        let db = req.app.locals.dbClient.db('inventory');
+
+        await db.collection('provinces').find({}).toArray((err, result) => {
+            if (err) throw error;
+
+            res.render('./registration/register', {
+                provincesName: result,
+                postData: {
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    gender: req.body.gender,
+                    address: req.body.address,
+                    city: req.body.city,
+                    province: req.body.province,
+                    zipCode: req.body.zipCode,
+                    email: req.body.email,
+                }
+            });
         });
+
+
     }
 
 });
 
 function check_values(reqBody, manPostData) {
-    manPostData.forEach(function(item) {
-        if (!reqBody.includes(item)) {
-            return false;
-        }
-    });
+    // manPostData.forEach(function(item) {
+    //     if (!reqBody.includes(item)) {
+    //         return false;
+    //     }
+    // });
 
-    return true;
+    return false;
 }
 
 function check_fields(reqBody, manPostData) {
-    // return false;
 
-    // somewhere error
-
-    if (reqBody.length !== postData.length) {
+    if (reqBody.length !== manPostData.length) {
         return false;
     }
 
